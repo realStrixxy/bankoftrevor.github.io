@@ -1,0 +1,18 @@
+.boddy {
+    background-color: gray;
+}
+
+.loginHeader{
+    text-align: center;
+    color: black;
+    font-family:'Times New Roman';
+    font-size: 40px;
+}
+
+.loginForm{
+    text-align: center;
+}
+
+.accountBody{
+    background-color: gray;
+}
