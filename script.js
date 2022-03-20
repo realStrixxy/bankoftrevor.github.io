@@ -5,7 +5,7 @@ function nameInput(){
     if(username.length > 0 && password.length > 0){
         if(username == "username" && password == "password"){
             alert("You will now be redirected to your account");
-            window.location.href = "index.html";
+            window.location.href = "accountpage.html";
         }
         else{
             alert("Username or Password Incorrect");
