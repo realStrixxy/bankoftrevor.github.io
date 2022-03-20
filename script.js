@@ -2,16 +2,57 @@ function nameInput(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
-    if(username.length > 0 && password.length > 0){
-        if(username == "username" && password == "password"){
-            alert("You will now be redirected to your account");
+    for(let user in userDatabase.UserInfo){
+        if(username == userDatabase.UserInfo[user]?.username && password == userDatabase.UserInfo[user]?.password)
+        {
+            let currentName = userDatabase.UserInfo[user]?.name;
+            let currentBalance = userDatabase.UserInfo[user]?.BankInfo[0]?.Balance;
+            localStorage.setItem('value1', `${currentName}`);
+            localStorage.setItem('value2', `${currentBalance}`);
             window.location.href = "accountpage.html";
         }
-        else{
-            alert("Username or Password Incorrect");
-        }
-    }
-    else{
-        alert("Username or Password Field Empty");
     }
 }
+
+const userDatabase =
+{
+    "UserInfo": [
+        {
+            "name": "Trevor Edwards",
+            "username": "realStrixxy",
+            "password": "securePassword",
+            "BankInfo": [
+                {
+                    "Balance": "$2500"
+                }
+            ]
+        },
+        {
+            "name": "Colton Bombinski",
+            "username": "Honu",
+            "password": "password",
+            "BankInfo": [
+                {
+                    "Balance": "$1500"
+                }
+            ]
+        },
+        {
+            "name": "Carter Meza",
+            "username": "DeathSquadron",
+            "password": "password",
+            "BankInfo": [
+                {
+                    "Balance": "10 Pesos"
+                }
+            ]
+        }
+    ]
+};
+
+function SetForAccount(){
+    const hellonameheading = document.getElementById('hellonameheading');
+    
+    var currentStats = "Hello, " + localStorage.getItem('value1') + ", your balance is " + localStorage.getItem('value2') + "!";
+    hellonameheading.textContent = currentStats;
+    }
