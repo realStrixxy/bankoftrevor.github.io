@@ -7,8 +7,8 @@ function nameInput(){
         {
             let currentName = userDatabase.UserInfo[user]?.name;
             let currentBalance = userDatabase.UserInfo[user]?.BankInfo[0]?.Balance;
-            localStorage.setItem('value1', `${currentName}`);
-            localStorage.setItem('value2', `${currentBalance}`);
+            localStorage.setItem('currentName', `${currentName}`);
+            localStorage.setItem('currentBalance', `${currentBalance}`);
             window.location.href = "accountpage.html";
         }
     }
@@ -23,7 +23,7 @@ const userDatabase =
             "password": "securePassword",
             "BankInfo": [
                 {
-                    "Balance": "$2500"
+                    "Balance": "2500"
                 }
             ]
         },
@@ -33,7 +33,7 @@ const userDatabase =
             "password": "password",
             "BankInfo": [
                 {
-                    "Balance": "$1500"
+                    "Balance": "1500"
                 }
             ]
         },
@@ -43,7 +43,7 @@ const userDatabase =
             "password": "password",
             "BankInfo": [
                 {
-                    "Balance": "10 Pesos"
+                    "Balance": "10"
                 }
             ]
         }
@@ -53,6 +53,36 @@ const userDatabase =
 function SetForAccount(){
     const hellonameheading = document.getElementById('hellonameheading');
     
-    var currentStats = "Hello, " + localStorage.getItem('value1') + ", your balance is " + localStorage.getItem('value2') + "!";
+    var currentStats = "Hello, " + localStorage.getItem('currentName') + ", your balance is $" + localStorage.getItem('currentBalance') + "!";
     hellonameheading.textContent = currentStats;
     }
+
+function Deposit(){
+    var depositt = prompt("How much would you like to deposit?");
+    var selection = parseInt(depositt, 10);
+    if(/^[0-9.]+$/.test(selection)){
+        alert("$" + depositt + " were deposited to your account!");
+        let newBalance = parseInt(localStorage.getItem('currentBalance')) + selection;
+        console.log(newBalance);
+        localStorage.setItem('currentBalance', `${newBalance}`);
+        SetForAccount();
+    }
+    else{
+        alert("Not a valid number!")
+    }
+}
+
+function Withdrawal(){
+    var withdrawall = prompt("How much would you like to withdraw?");
+    var selection = parseInt(withdrawall, 10);
+    if(/^[0-9.]+$/.test(selection)){
+        alert("$" + withdrawall + " were deposited to your account!");
+        let newBalance = parseInt(localStorage.getItem('currentBalance')) - selection;
+        console.log(newBalance);
+        localStorage.setItem('currentBalance', `${newBalance}`);
+        SetForAccount();
+    }
+    else{
+        alert("Not a valid number!")
+    }
+}

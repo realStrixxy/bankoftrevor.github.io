@@ -14,9 +14,15 @@
 }
 
 .accountBody{
-    background-color: gray;
+    background-color: #F96167;
 }
 
 .hellonameheading{
     text-align: center;
+    background-color: #FCE77D;
+}
+
+.transactions{
+    text-align: center;
+    border: 1px solid black;
 }
