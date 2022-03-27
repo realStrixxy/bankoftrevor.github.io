@@ -77,7 +77,10 @@ function SignUp(){
             Username : newUsername,
             Password : newPassword,
             Email : newEmail,
-            Balance: 0
+            Balance: 0,
+            Transactions: [
+                
+            ]
         });
 
         localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
@@ -91,7 +94,18 @@ function setAccountStats(){
     let userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || [];
     var currentUser = localStorage.getItem('currentUser');
     var balance = userDatabase[currentUser].Balance;
-    document.getElementById("AccountHeader").textContent = userDatabase[currentUser].Username + "'s Balance: $" + balance;
+    document.getElementById("AccountHeader").textContent = "Balance: $" + balance;
+    document.getElementById("GayFag").textContent = userDatabase[currentUser].Username + "'s Account Summary"
+    
+    var transactions = userDatabase[currentUser].Transactions;
+    var transactionDiv = document.getElementById("transDiv");
+    for(let transaction in transactions){        
+        var y = document.createElement("H2");
+        y.setAttribute("class", "transactionh2");
+        var t = document.createTextNode("Amount: " + userDatabase[currentUser].Transactions[transaction]);
+        y.appendChild(t);
+        transactionDiv.appendChild(y);
+    }
 }
 
 function SignOut(){
@@ -108,8 +122,11 @@ function Deposit(){
         alert("Not a valid amount!");
     } else {
         userDatabase[currentUser].Balance = parseInt(currentBalance, 10) + parseInt(amount, 10);
+        var transs = userDatabase[currentUser].Transactions;
+        transs.push("+$" + amount);
         localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
         setAccountStats();
+        location.reload();
         alert("$" + amount + " has been deposited to your account!");
     }
 }
@@ -124,8 +141,27 @@ function Withdraw(){
         alert("Not a valid amount!");
     } else {
         userDatabase[currentUser].Balance = parseInt(currentBalance, 10) - parseInt(amount, 10);
+        var transs = userDatabase[currentUser].Transactions;
+        transs.push("-$" + amount);
         localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
         setAccountStats();
+        location.reload();
         alert("$" + amount + " has been withdrawn from your account!");
+    }
+}
+
+function ClearTransactionHistory(){
+    let userDatabase = JSON.parse(localStorage.getItem('userDatabase')) || [];
+    var currentUser = localStorage.getItem('currentUser');
+    var transactions = userDatabase[currentUser].Transactions;
+    let confirmm = confirm("Are You Sure?")
+    if(confirmm){
+        transactions.length = 0;
+        localStorage.setItem('userDatabase', JSON.stringify(userDatabase));
+        alert("Transaction History Was Cleared")
+        setAccountStats();
+        location.reload();
+    } else {
+        alert("Transaction History Was Not Cleared")
     }
 }

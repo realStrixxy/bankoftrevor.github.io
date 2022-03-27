@@ -133,6 +133,7 @@
     text-align: center;
     vertical-align: top;
     background-color: #FCE77D;
+    border: 2px solid black;
 }
 
 .AccountHeader{
@@ -171,6 +172,49 @@
 
 .SignOutButton{
     background-color: #F96167;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    width: 50%;
+}
+
+.GayFag{
+    text-align: center;
+    background-color:#FCE77D;
+    border: 2px solid black;
+}
+
+.transactions{
+    background-color:#FCE77D;
+    border: 2px solid black;
+}
+
+.tranzactions{
+    text-align: center;
+    background-color: #FCE77D;
+    border: 2px solid black;
+}
+
+.transactionh2{
+    text-align: center;
+    background-color: #f5e077;
+}
+
+.Divvvvv{
+    margin: 5px;
+    text-align: center;
+    background-color: #FCE77D;
+    border: 2px solid black;
+}
+
+.ClearTH{
+    align-items: center;
+    background-color: #f35f60;
     color: white;
     border: none;
     border-radius: 12px;
